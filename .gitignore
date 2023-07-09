@@ -161,3 +161,4 @@ cython_debug/
 play_box/
 test_play_box/
 main.py
+venv
