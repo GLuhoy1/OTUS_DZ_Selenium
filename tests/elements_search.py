@@ -8,8 +8,8 @@ class MainPageLocators:
     SEARCH_RESULT_LINK = (By.CSS_SELECTOR, 'div#content h4 a')
     SEARCH_INPUT = (By.CSS_SELECTOR, 'div#search input[name="search"]')
     CART_BUTTON = (By.CSS_SELECTOR, 'div#cart button')
-    TABLETS_BUTTON = (By.CSS_SELECTOR, '#menu a[href="http://192.168.44.152:8081/tablet"]')
-    ABOUT_US_BUTTON = (By.CSS_SELECTOR, 'footer a[href="http://192.168.44.152:8081/about_us"]')
+    TABLETS_BUTTON = (By.CSS_SELECTOR, '#menu a[href="http://192.168.44.153:8081/tablet"]')
+    ABOUT_US_BUTTON = (By.CSS_SELECTOR, 'footer a[href="http://192.168.44.153:8081/about_us"]')
 
 
 @pytest.mark.parametrize("locator", [
@@ -32,7 +32,6 @@ class SelectorsForCatalogPage:
 
 
 def test_for_catalog_page(browser):
-    """не нашёл варианта оптимальнее(параметризация запускает тест 5 раз, что несколько дольше чем 1 тест"""
     WebDriverWait(browser, 5).until(EC.element_to_be_clickable(SelectorsForCatalogPage.GRID_VIEW_BUTTON))
     WebDriverWait(browser, 5).until(EC.element_to_be_clickable(SelectorsForCatalogPage.LIST_VIEW_BUTTON))
     WebDriverWait(browser, 5).until(EC.element_to_be_clickable(SelectorsForCatalogPage.PALM_TREO_PRO_LINK))
@@ -81,7 +80,6 @@ class SelectorsForRegistrationPage:
 
 
 def test_for_registration_page(browser):
-    """По какой-то причине эта реализация кажется мне ненадёжной"""
     selectors = [SelectorsForRegistrationPage.CONTINUE_BUTTON,
                  SelectorsForRegistrationPage.FIRST_NAME,
                  SelectorsForRegistrationPage.LAST_NAME,
