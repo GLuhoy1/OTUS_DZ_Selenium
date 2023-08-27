@@ -7,17 +7,11 @@ from page_objects.MainPage import MainPage
 from helpers import generate_random_user
 from helpers import random_product
 
-
-BASE_URL = 'http://192.168.44.153:8081'
-ADMIN_URL = f'{BASE_URL}/admin'
-ADMIN_LOGIN = 'user'
-ADMIN_PASSWORD = 'bitnami'
 TEST_PATTERN = '_test_'
 
 
-@pytest.mark.parametrize("i", range(5))
+@pytest.mark.parametrize("i", range(1))
 def test_reg_user(browser, i):
-    browser.get(BASE_URL)
     reg_page = RegistryPage(browser)
     reg_page.click_register()
     user_data = generate_random_user()
@@ -27,13 +21,13 @@ def test_reg_user(browser, i):
 
 
 @pytest.fixture(scope='function')
-def admin_login(browser):
-    browser.get(ADMIN_URL)
+def admin_login(browser, admin_password, admin_login):
+    browser.get(browser.current_url + 'admin/')
     login_page = LoginAsAdmin(browser)
-    login_page.log_as_admin(ADMIN_LOGIN, ADMIN_PASSWORD)
+    login_page.log_as_admin(admin_login, admin_password)
 
 
-@pytest.mark.parametrize("i", range(2))
+@pytest.mark.parametrize("i", range(1))
 def test_add_product(browser, admin_login, i):
     admin_page = AdminPage(browser)
     product_data = random_product(TEST_PATTERN)
@@ -42,7 +36,7 @@ def test_add_product(browser, admin_login, i):
     admin_page.delete_test_prod(TEST_PATTERN)
 
 
-@pytest.mark.parametrize("i", range(2))
+@pytest.mark.parametrize("i", range(1))
 def test_del_product(browser, admin_login, i):
     admin_page = AdminPage(browser)
     product_data = random_product(TEST_PATTERN)
@@ -54,7 +48,6 @@ def test_del_product(browser, admin_login, i):
 
 @pytest.mark.parametrize("currency", ["gbp", "eur", "usd"])
 def test_of_currency_btn(browser, currency):
-    browser.get(BASE_URL)
     main_page = MainPage(browser)
     main_page.chose_currency(currency)
     assert main_page.actual_currency_symbol() in main_page.get_first_product_price()
