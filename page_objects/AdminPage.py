@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from page_objects.BasePage import BasePage
 from selenium.webdriver.common.alert import Alert
@@ -46,4 +48,6 @@ class AdminPage(BasePage):
         self.select_first_test_product(test_pattern)
         self.click(self.DELETE_BTN)
         alert = Alert(self.driver)
+        time.sleep(0.1)
         alert.accept()
+        time.sleep(0.1)

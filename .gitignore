@@ -163,3 +163,4 @@ test_play_box/
 main.py
 venv
 *.back
+*passwords*
