@@ -3,29 +3,23 @@ import faker
 
 def generate_random_user():
     fake = faker.Faker()
-    first_name = fake.first_name()
-    last_name = fake.last_name()
-    email = fake.email()
-    telephone = fake.phone_number()
-    password = fake.password()
-
-    user_data = {
-        'First Name': first_name,
-        'Last Name': last_name,
-        'E-Mail': email,
-        'Telephone': telephone,
-        'Password': password
+    fake_user_data = {
+        'First Name': fake.first_name(),
+        'Last Name': fake.last_name(),
+        'E-Mail': fake.email(),
+        'Telephone': fake.phone_number(),
+        'Password': fake.password()
     }
 
-    return user_data
+    return fake_user_data
 
 
 def random_product(test_pattern: str):
     fake = faker.Faker()
 
-    product_name = 'AaA' + test_pattern + fake.text(max_nb_chars=10)  # Генерируем название продукта с ограничением в 10 символов
-    meta_title = fake.sentence(nb_words=4)  # Генерируем Meta title
-    model = fake.bothify(text="??#??#")  # Генерируем модель товара с добавлением букв
+    product_name = 'AaA' + test_pattern + fake.text(max_nb_chars=10)
+    meta_title = fake.sentence(nb_words=4)
+    model = fake.bothify(text="??#??#")
 
     product_data_dict = {
         'product_name': product_name,

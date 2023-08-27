@@ -11,5 +11,3 @@ class LoginAsAdmin(BasePage):
         self.fill_strings(self.USERNAME_STRING, login)
         self.fill_strings(self.PASSWORD_STRING, password)
         self.click(self.LOGIN_BUTTON)
-
-
