@@ -11,7 +11,6 @@ RUN pip install -r requirements.txt
 
 ENV PYTHONPATH=/app
 
-# Добавьте переменные окружения для Chrome и Firefox
 ENV PATH="/usr/lib/chromium-browser:/usr/lib/firefox-esr:${PATH}"
 ENV CHROME_BIN="/usr/lib/chromium/chrome"
 ENV DISPLAY=:99
