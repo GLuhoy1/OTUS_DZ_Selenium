@@ -6,7 +6,7 @@ from passwords import login, password
 
 def pytest_addoption(parser):
     parser.addoption("--browser", default="chrome")
-    parser.addoption("--headless", action="store_true")
+    parser.addoption("--headless", default="headless", action="store_true")
     parser.addoption("--base_url", default="http://192.168.44.153:8081/")
     parser.addoption("--admin_login", default=f"{login}")
     parser.addoption("--admin_password", default=f"{password}")
@@ -22,12 +22,13 @@ def browser(request):
         if headless:
             options.add_argument('--headless')
         options.add_argument('--incognito')
+        options.add_argument('--no-sandbox')
         driver = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
         options = FirefoxOptions()
         if headless:
             options.add_argument('--headless')
-        options.add_argument('-private')
+        options.add_argument('--private')
         driver = webdriver.Firefox(options=options)
 
     driver.maximize_window()

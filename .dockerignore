@@ -163,5 +163,3 @@ test_play_box/
 main.py
 venv
 *.back
-*passwords*
-*project_struct*
